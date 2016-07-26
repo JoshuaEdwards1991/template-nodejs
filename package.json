@@ -1,0 +1,15 @@
+{
+  "name": "boilerplate-nodejs",
+  "version": "0.1.0",
+  "description": "Boilerplate code for an extremely basic Node.js app/script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamkelsall/boilerplate-nodejs.git"
+  },
+  "author": "Adam Kelsall",
+  "license": "MIT"
+}

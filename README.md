@@ -1,2 +1,3 @@
 # boilerplate-nodejs
-Boilerplate code for an extremely Node.js app/script
+
+Boilerplate code for an extremely basic Node.js app/script
