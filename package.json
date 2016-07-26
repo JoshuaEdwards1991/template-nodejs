@@ -2,10 +2,11 @@
   "name": "boilerplate-nodejs",
   "version": "0.1.0",
   "description": "Boilerplate code for an extremely basic Node.js app/script",
-  "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./lib/test.js"
   },
   "repository": {
     "type": "git",
