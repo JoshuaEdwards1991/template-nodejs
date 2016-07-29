@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Boilerplate code for an extremely basic Node.js app/script",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d dist",
     "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./lib/test.js"

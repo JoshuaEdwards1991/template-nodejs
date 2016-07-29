@@ -2,5 +2,5 @@
 .DS_Store
 
 # Generated directories
+dist
 node_modules
-lib
