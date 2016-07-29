@@ -4,3 +4,6 @@
 # Generated directories
 dist
 node_modules
+
+# Logs
+npm-debug.log
