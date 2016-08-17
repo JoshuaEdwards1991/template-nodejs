@@ -26,8 +26,11 @@ scripts right up to complex web services.
 - *First time install:*
   - Clone this repo.
   - `npm install` all npm dependencies. Also installs Git Hooks.
-- *If changing the project's entry point from `src/index.js`:*
-  - Update `start` script in `package.json`.
+  - *Make it your own:*
+    - Change project details in `package.json`.
+    - Remove/replace `README.md`.
+    - Write code in `src/` directory.
+      - If `src/example.js` is removed, update `start` script in `package.json`.
 - *After writing code:*
   - `npm run build` to compile code in `src/` to `dist/`.
   - `npm start`

@@ -7,7 +7,7 @@
     "hooks": "./hooks/apply-hooks.sh",
     "lint": "eslint src/",
     "postinstall": "npm run hooks & npm run build",
-    "start": "node ./dist/test.js",
+    "start": "node ./dist/example.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
