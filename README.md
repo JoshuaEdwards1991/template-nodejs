@@ -15,8 +15,8 @@ scripts right up to complex web services.
 
 - [npm](https://www.npmjs.com/): Node.js package manager that installs dependencies and runs
   scripts.
-- [Babel](https://babeljs.io/): Write source code in ES6/7 and compile it to run on most Node.js
-  versions.
+- [Babel](https://babeljs.io/): Write source code in ES6/7 and compile it so it can be deployed on
+  most Node.js versions.
 - [ESLint](http://eslint.org/): Lints source code to warn of serious errors and stylistic issues.
 - [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks): Source code with
   ESLint linting errors cannot be committed.
