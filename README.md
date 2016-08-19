@@ -1,6 +1,6 @@
 # Project Template: Node.js Scripting
 
-*Part of the Project Template series by Adam Kelsall.*  
+*Part of the Project Template series by Adam Kelsall.*
 
 ## TL;DR Docs
 
@@ -18,8 +18,12 @@ scripts right up to complex web services.
 - [Babel](https://babeljs.io/): Write source code in ES6/7 and compile it so it can be deployed on
   most Node.js versions.
 - [ESLint](http://eslint.org/): Lints source code to warn of serious errors and stylistic issues.
+  - Custom linting rules based on [ESLint](http://eslint.org/docs/rules/) &
+    [Airbnb](https://github.com/airbnb/javascript).
 - [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks): Source code with
   ESLint linting errors cannot be committed.
+- [Mocha](https://mochajs.org/) & [Chai](http://chaijs.com/): Unit test suite and assertions for
+  testing code.
 
 ### How do I get started?
 
@@ -32,5 +36,6 @@ scripts right up to complex web services.
     - Write code in `src/` directory.
       - If `src/example.js` is removed, update `start` script in `package.json`.
 - *After writing code:*
+  - `npm run test` to lint and test source code.
   - `npm run build` to compile code in `src/` to `dist/`.
   - `npm start`

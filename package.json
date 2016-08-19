@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-nodejs",
+  "name": "template-nodejs",
   "version": "0.1.0",
-  "description": "Boilerplate code for an extremely basic Node.js app/script",
+  "description": "Template for fundamental Node.js scripts and beyond.",
   "scripts": {
     "build": "babel src -d dist",
     "hooks": "./hooks/apply-hooks.sh",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adamkelsall/boilerplate-nodejs.git"
+    "url": "git+https://github.com/adamkelsall/template-nodejs.git"
   },
   "author": "Adam Kelsall",
   "license": "MIT",
