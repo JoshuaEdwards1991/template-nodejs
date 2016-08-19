@@ -127,7 +127,10 @@
     "no-trailing-spaces": ["warn", { "skipBlankLines": false }],
     "no-undef": ["error", { "typeof": true }],
     "no-undef-init": "error",
-    "no-underscore-dangle": ["warn", { "allowAfterThis": false, "allowAfterSuper": false }],
+    "no-underscore-dangle": ["warn", {
+      "allow": ["_href", "_id", "_link", "_type"],
+      "allowAfterThis": false, "allowAfterSuper": false
+    }],
     "no-unexpected-multiline": "error",
     "no-unneeded-ternary": ["warn", { "defaultAssignment": true }],
     "no-unreachable": "error",
