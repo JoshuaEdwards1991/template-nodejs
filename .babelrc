@@ -6,6 +6,6 @@
     "transform-strict-mode"
   ],
   "presets": [
-    "es2016"
+    "es2015"
   ]
 }
