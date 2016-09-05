@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import { validateName } from './validation';
 
 const questions = [
   {
@@ -6,6 +7,7 @@ const questions = [
     message: 'Project name:',
     name: 'name',
     type: 'input',
+    validate: (value) => validateName(value),
   },
   {
     default: '0.1.0',

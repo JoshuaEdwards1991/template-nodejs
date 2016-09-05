@@ -24,7 +24,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-plugin-transform-strict-mode": "^6.11.3",
     "babel-preset-es2015": "^6.14.0",
-    "inquirer": "^1.1.3"
+    "inquirer": "^1.1.3",
+    "validate-npm-package-name": "^2.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
