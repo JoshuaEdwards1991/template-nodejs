@@ -1,6 +1,14 @@
 import { validateName, validateVersion } from '../../modules/validation';
 import { expect } from 'chai';
 
+const runTestCaseOnValidation = function runTestCaseOnValidation(testCase, validation) {
+  it(`should be a ${testCase.name}`, () => {
+    for (const example of testCase.examples) {
+      expect(validation(example)).to.equal(testCase.response);
+    }
+  });
+};
+
 describe('Validation', () => {
   describe('Name', () => {
     const testCases = [
@@ -41,13 +49,7 @@ describe('Validation', () => {
       },
     ];
 
-    for (const testCase of testCases) {
-      it(`should be ${testCase.name}`, () => {
-        for (const example of testCase.examples) {
-          expect(validateName(example)).to.equal(testCase.response);
-        }
-      });
-    }
+    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateName));
   });
 
   describe('Version', () => {
@@ -64,12 +66,6 @@ describe('Validation', () => {
       },
     ];
 
-    for (const testCase of testCases) {
-      it(`should be a ${testCase.name}`, () => {
-        for (const example of testCase.examples) {
-          expect(validateVersion(example)).to.equal(testCase.response);
-        }
-      });
-    }
+    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateVersion));
   });
 });
