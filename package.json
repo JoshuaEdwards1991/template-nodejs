@@ -7,7 +7,7 @@
     "hooks": "./hooks/apply-hooks.sh",
     "lint": "eslint src/",
     "postinstall": "npm run hooks & npm run build",
-    "start": "node ./dist/example.js",
+    "start": "node ./dist/index.js",
     "test": "npm run lint && npm run testonly",
     "testonly": "mocha --compilers js:babel-core/register src/**test/**/*.js"
   },
