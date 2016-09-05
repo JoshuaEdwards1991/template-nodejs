@@ -1,5 +1,5 @@
+import { validateName, validateVersion } from './validation';
 import inquirer from 'inquirer';
-import { validateName } from './validation';
 
 const questions = [
   {
@@ -14,6 +14,7 @@ const questions = [
     message: 'Version:',
     name: 'version',
     type: 'input',
+    validate: (value) => validateVersion(value),
   },
   {
     message: 'Description:',

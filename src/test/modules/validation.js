@@ -1,5 +1,5 @@
+import { validateName, validateVersion } from '../../modules/validation';
 import { expect } from 'chai';
-import { validateName } from '../../modules/validation';
 
 describe('Validation', () => {
   describe('Name', () => {
@@ -45,6 +45,29 @@ describe('Validation', () => {
       it(`should be ${testCase.name}`, () => {
         for (const example of testCase.examples) {
           expect(validateName(example)).to.equal(testCase.response);
+        }
+      });
+    }
+  });
+
+  describe('Version', () => {
+    const testCases = [
+      {
+        examples: ['example', '1', '1.2', '01.2.3', 'a.b.c'],
+        name: 'invalid with non-semvers',
+        response: 'Invalid semantic version (semver).',
+      },
+      {
+        examples: ['1.2.3', '1.22.3', '0.0.1', '1.0.0-alpha.0', '1.0.0-beta.3'],
+        name: 'valid with semvers',
+        response: true,
+      },
+    ];
+
+    for (const testCase of testCases) {
+      it(`should be a ${testCase.name}`, () => {
+        for (const example of testCase.examples) {
+          expect(validateVersion(example)).to.equal(testCase.response);
         }
       });
     }

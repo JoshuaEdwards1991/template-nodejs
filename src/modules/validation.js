@@ -1,3 +1,4 @@
+import semver from 'semver';
 import validate from 'validate-npm-package-name';
 
 const sentenceLikeString = function sentenceLikeString(string) {
@@ -12,4 +13,10 @@ export function validateName(name) {
   else if (validName.warnings) return sentenceLikeString(validName.warnings[0]);
 
   return 'Name is invalid.';
+}
+
+export function validateVersion(version) {
+  return semver.valid(version)
+    ? true
+    : 'Invalid semantic version (semver).';
 }
