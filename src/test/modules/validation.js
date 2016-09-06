@@ -82,7 +82,7 @@ describe('Validation', () => {
   describe('Version', () => {
     const testCases = [
       {
-        examples: ['example', '1', '1.2', '01.2.3', 'a.b.c'],
+        examples: ['example', '1', '1.2', '01.2.3', '1.2.3 ', 'a.b.c'],
         name: 'invalid with non-semvers',
         response: 'Invalid semantic version (semver).',
       },
