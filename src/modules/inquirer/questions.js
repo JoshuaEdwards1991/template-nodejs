@@ -22,6 +22,11 @@ const questions = [
     type: 'input',
   },
   {
+    message: 'Git Repository:',
+    name: 'repository',
+    type: 'input',
+  },
+  {
     default: 'MIT',
     message: 'License:',
     name: 'license',
