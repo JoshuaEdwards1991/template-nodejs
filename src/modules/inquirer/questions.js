@@ -1,15 +1,5 @@
 import { validateLicense, validateName, validateVersion } from './validation';
-import inquirer from 'inquirer';
-
-const addFilters = function addFilters(questions) {
-  return questions.map((question) => {
-    if (question.type === 'input') {
-      question.filter = question.filter || ((answer) => answer.trim());
-    }
-
-    return question;
-  });
-};
+import { applyDefaultFilters } from './filters';
 
 const questions = [
   {
@@ -40,13 +30,4 @@ const questions = [
   },
 ];
 
-export default function answerQuestions() {
-  return new Promise((resolve, reject) => {
-    inquirer
-      .prompt(addFilters(questions))
-      .then(
-        (answers) => resolve(answers),
-        (err) => reject(err)
-      );
-  });
-}
+export default applyDefaultFilters(questions);
