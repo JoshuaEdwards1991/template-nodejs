@@ -1,4 +1,4 @@
-import { validateName, validateVersion } from '../../modules/validation';
+import { validateLicense, validateName, validateVersion } from '../../modules/validation';
 import { expect } from 'chai';
 
 const runTestCaseOnValidation = function runTestCaseOnValidation(testCase, validation) {
@@ -10,6 +10,33 @@ const runTestCaseOnValidation = function runTestCaseOnValidation(testCase, valid
 };
 
 describe('Validation', () => {
+  describe('License', () => {
+    const testCases = [
+      {
+        examples: ['foo', 'bar'],
+        name: 'invalid if a random string',
+        response: 'Must be a SPDX license identifier or "UNLICENSED".',
+      },
+      {
+        examples: ['The MIT License'],
+        name: 'invalid if a license but not a SPDX identifier',
+        response: 'Must be a SPDX license identifier or "UNLICENSED". Did you mean "MIT"?',
+      },
+      {
+        examples: ['UNLICENSED'],
+        name: 'valid if "UNLICENSED"',
+        response: true,
+      },
+      {
+        examples: ['MIT', 'ISC', 'GPL-3.0', 'Apache-2.0'],
+        name: 'valid if a SPDX license identifier',
+        response: true,
+      },
+    ];
+
+    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateLicense));
+  });
+
   describe('Name', () => {
     const testCases = [
       {

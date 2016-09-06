@@ -1,22 +1,35 @@
-import semver from 'semver';
-import validate from 'validate-npm-package-name';
+import licenseValidation from 'validate-npm-package-license';
+import packageNameValidation from 'validate-npm-package-name';
+import semverValidation from 'semver';
 
 const sentenceLikeString = function sentenceLikeString(string) {
   return `${string.charAt(0).toUpperCase()}${string.slice(1)}.`;
 };
 
-export function validateName(name) {
-  const validName = validate(name);
+export function validateLicense(license) {
+  const validationResult = licenseValidation(license);
+  if (validationResult.spdx || validationResult.unlicensed) return true;
 
-  if (validName.validForNewPackages) return true;
-  else if (validName.errors) return sentenceLikeString(validName.errors[0]);
-  else if (validName.warnings) return sentenceLikeString(validName.warnings[0]);
+  let suggestion = '';
+  if (validationResult.warnings && validationResult.warnings[1]) {
+    suggestion = ` Did you mean "${validationResult.warnings[1].split('"')[1]}"?`;
+  }
+
+  return `Must be a SPDX license identifier or "UNLICENSED".${suggestion}`;
+}
+
+export function validateName(name) {
+  const validationResult = packageNameValidation(name);
+
+  if (validationResult.validForNewPackages) return true;
+  else if (validationResult.errors) return sentenceLikeString(validationResult.errors[0]);
+  else if (validationResult.warnings) return sentenceLikeString(validationResult.warnings[0]);
 
   return 'Name is invalid.';
 }
 
 export function validateVersion(version) {
-  return semver.valid(version)
+  return semverValidation.valid(version)
     ? true
     : 'Invalid semantic version (semver).';
 }

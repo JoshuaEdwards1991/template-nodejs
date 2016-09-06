@@ -1,4 +1,4 @@
-import { validateName, validateVersion } from './validation';
+import { validateLicense, validateName, validateVersion } from './validation';
 import inquirer from 'inquirer';
 
 const questions = [
@@ -20,6 +20,13 @@ const questions = [
     message: 'Description:',
     name: 'description',
     type: 'input',
+  },
+  {
+    default: 'MIT',
+    message: 'License:',
+    name: 'license',
+    type: 'input',
+    validate: (value) => validateLicense(value),
   },
 ];
 
