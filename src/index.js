@@ -1,6 +1,6 @@
-import answerQuestions from './modules/inquirer/answerQuestions';
+import getInput from './modules/input/_input';
 
-answerQuestions().then(
+getInput().then(
   (answers) => console.log(JSON.stringify(answers, null, 2)),
   (err) => console.log(err)
 );

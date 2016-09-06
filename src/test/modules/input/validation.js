@@ -1,4 +1,4 @@
-import { validateLicense, validateName, validateVersion } from '../../modules/validation';
+import { validateLicense, validateName, validateVersion } from '../../../modules/input/validation';
 import { expect } from 'chai';
 
 const runTestCaseOnValidation = function runTestCaseOnValidation(testCase, validation) {
@@ -9,7 +9,7 @@ const runTestCaseOnValidation = function runTestCaseOnValidation(testCase, valid
   });
 };
 
-describe('Validation', () => {
+describe('Input Validation', () => {
   describe('License', () => {
     const testCases = [
       {
