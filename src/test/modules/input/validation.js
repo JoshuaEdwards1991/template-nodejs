@@ -34,7 +34,7 @@ describe('Input Validation', () => {
       },
     ];
 
-    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateLicense));
+    testCases.forEach(testCase => runTestCaseOnValidation(testCase, validateLicense));
   });
 
   describe('Name', () => {
@@ -76,7 +76,7 @@ describe('Input Validation', () => {
       },
     ];
 
-    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateName));
+    testCases.forEach(testCase => runTestCaseOnValidation(testCase, validateName));
   });
 
   describe('Version', () => {
@@ -93,6 +93,6 @@ describe('Input Validation', () => {
       },
     ];
 
-    testCases.forEach((testCase) => runTestCaseOnValidation(testCase, validateVersion));
+    testCases.forEach(testCase => runTestCaseOnValidation(testCase, validateVersion));
   });
 });

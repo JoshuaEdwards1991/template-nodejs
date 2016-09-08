@@ -1,5 +1,5 @@
 const defaultFilters = {
-  input: (answer) => answer.trim(),
+  input: answer => answer.trim(),
 };
 
 export function applyDefaultFilters(questions) {

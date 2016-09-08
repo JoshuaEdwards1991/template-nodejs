@@ -7,14 +7,14 @@ const questions = [
     message: 'Project name:',
     name: 'name',
     type: 'input',
-    validate: (answer) => validateName(answer),
+    validate: answer => validateName(answer),
   },
   {
     default: '0.1.0',
     message: 'Version:',
     name: 'version',
     type: 'input',
-    validate: (answer) => validateVersion(answer),
+    validate: answer => validateVersion(answer),
   },
   {
     message: 'Description:',
@@ -31,7 +31,7 @@ const questions = [
     message: 'License:',
     name: 'license',
     type: 'input',
-    validate: (answer) => validateLicense(answer),
+    validate: answer => validateLicense(answer),
   },
 ];
 
