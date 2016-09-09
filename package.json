@@ -2,6 +2,7 @@
   "name": "template-nodejs",
   "version": "0.1.0",
   "description": "Template for fundamental Node.js scripts and beyond.",
+  "main": "./dist/templater.js",
   "scripts": {
     "build": "babel src -d dist",
     "hooks": "./hooks/apply-hooks.sh",
