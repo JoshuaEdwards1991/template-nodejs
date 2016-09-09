@@ -6,7 +6,7 @@
   },
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 7,
     "sourceType": "module",
     "ecmaFeatures": {
       "impliedStrict": "true",
@@ -35,7 +35,6 @@
     "eqeqeq": ["error", "always"],
     "func-call-spacing": ["warn", "never"],
     "func-names": ["warn", "always"],
-    "generator-star-spacing": ["warn", "before"],
     "global-require": "error",
     "handle-callback-err": ["error", "err"],
     "id-length": ["warn", { "min": 2, "properties": "always" }],
