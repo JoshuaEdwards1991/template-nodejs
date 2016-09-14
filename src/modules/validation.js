@@ -2,7 +2,7 @@ import errorHandler from './errorHandler';
 import ordinal from 'ordinal-number-suffix';
 
 export function validateObjectParams(paramName, validParams, object, index) {
-  const position = typeof index === 'number' ? `${ordinal(index + 1)} ` : '';
+  const position = index === undefined ? '' : `${ordinal(index + 1)} `;
 
   if (typeof object !== 'object') throw new Error(`${position}${paramName} is not an object.`);
 

@@ -12,6 +12,16 @@ describe('validation', () => {
       });
     });
 
+    describe('numbering', () => {
+      const validParams = [];
+
+      it('includes position ordinal in error message if provided', () => {
+        expect(() => validateObjectParams(paramName, validParams, false, 0)).to.throw('1st');
+        expect(() => validateObjectParams(paramName, validParams, false, 1)).to.throw('2nd');
+        expect(() => validateObjectParams(paramName, validParams, false)).to.not.throw('1st');
+      });
+    });
+
     describe('required', () => {
       const definitions = {
         optional: [{ name: 'example', required: false, validTypes: ['string'] }],
@@ -84,20 +94,10 @@ describe('validation', () => {
   });
 
   describe('validateParamArray', () => {
-    const paramName = 'objects';
-    const validParams = [];
-
     describe('structure', () => {
       it('is invalid if not an array', () => {
-        expect(() => validateParamArray(paramName, validParams, 'isNotArray'))
+        expect(() => validateParamArray('objects', [], 'isNotArray'))
           .to.throw('objects must be an array.');
-      });
-    });
-
-    describe('numbering', () => {
-      it('mentions the array position if an array object is invalid', () => {
-        expect(() => validateParamArray(paramName, validParams, [false, {}])).to.throw('1st');
-        expect(() => validateParamArray(paramName, validParams, [{}, false])).to.throw('2nd');
       });
     });
   });
