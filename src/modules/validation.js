@@ -115,3 +115,19 @@ export function validateFiles(files) {
     errorHandler('validating the "files" parameter', err);
   }
 }
+
+export function validateOptions(options) {
+  const validOptionsParams = [
+    {
+      name: 'project',
+      required: true,
+      validTypes: ['string'],
+    },
+  ];
+
+  try {
+    validateObjectParams('options', validOptionsParams, options);
+  } catch (err) {
+    errorHandler('validating the "options" parameter', err);
+  }
+}
