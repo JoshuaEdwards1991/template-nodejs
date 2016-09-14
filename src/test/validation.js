@@ -1,30 +1,14 @@
+import { validateObjectParams, validateParamArray } from '../modules/validation';
 import { expect } from 'chai';
-import { validateParamArray } from '../modules/validation';
 
 describe('validation', () => {
-  describe('validateParamArray', () => {
+  describe('validateObjectParams', () => {
     const paramName = 'objects';
 
     describe('structure', () => {
-      const validParams = [];
-
-      it('is invalid if not an array', () => {
-        expect(() => validateParamArray(paramName, validParams, 'isNotArray'))
-          .to.throw('objects must be an array.');
-      });
-
-      it('is invalid if not an array of objects', () => {
-        expect(() => validateParamArray(paramName, validParams, [false]))
+      it('is invalid if not an object', () => {
+        expect(() => validateObjectParams(paramName, [], false))
           .to.throw('objects is not an object.');
-      });
-    });
-
-    describe('numbering', () => {
-      const validParams = [];
-
-      it('mentions the array position if an array object is invalid', () => {
-        expect(() => validateParamArray(paramName, validParams, [false, {}])).to.throw('1st');
-        expect(() => validateParamArray(paramName, validParams, [{}, false])).to.throw('2nd');
       });
     });
 
@@ -33,63 +17,87 @@ describe('validation', () => {
         optional: [{ name: 'example', required: false, validTypes: ['string'] }],
         required: [{ name: 'example', required: true, validTypes: ['string'] }],
       };
+      const index = 0;
       const params = {
-        missing: [{}],
-        present: [{ example: 'string' }],
+        missing: {},
+        present: { example: 'string' },
       };
 
       it('is valid if optional field is present', () => {
-        expect(validateParamArray(paramName, definitions.optional, params.present))
+        expect(validateObjectParams(paramName, definitions.optional, params.present, index))
           .to.be.undefined;
       });
 
       it('is valid if optional field is missing', () => {
-        expect(validateParamArray(paramName, definitions.optional, params.missing))
+        expect(validateObjectParams(paramName, definitions.optional, params.missing, index))
           .to.be.undefined;
       });
 
       it('is valid if required field is present', () => {
-        expect(validateParamArray(paramName, definitions.required, params.present))
+        expect(validateObjectParams(paramName, definitions.required, params.present, index))
           .to.be.undefined;
       });
 
       it('is invalid if required field is missing', () => {
-        expect(() => validateParamArray(paramName, definitions.required, params.missing))
+        expect(() => validateObjectParams(paramName, definitions.required, params.missing, index))
           .to.throw('1st objects is missing the required "example" parameter.');
       });
     });
 
     describe('type', () => {
       it('is valid if matching the single validType', () => {
-        expect(validateParamArray(
+        expect(validateObjectParams(
           paramName,
           [{ name: 'string', validTypes: ['string'] }],
-          [{ string: 'string' }]
+          { string: 'string' },
+          0
         )).to.be.undefined;
       });
 
       it('is valid if one of multiple validTypes', () => {
-        expect(validateParamArray(
+        expect(validateObjectParams(
           paramName,
           [{ name: 'numberOrString', validTypes: ['number', 'string'] }],
-          [{ numberOrString: 'string' }]
+          { numberOrString: 'string' },
+          0
         )).to.be.undefined;
       });
 
       it('is valid if an array and validTypes includes "array" but not "object"', () => {
-        expect(validateParamArray(
+        expect(validateObjectParams(
           paramName,
           [{ name: 'array', validTypes: ['array'] }],
-          [{ array: [] }]
+          { array: [] },
+          0
         )).to.be.undefined;
       });
 
       it('is invalid if not included in validTypes', () => {
-        expect(() => validateParamArray(
+        expect(() => validateObjectParams(
           paramName,
           [{ name: 'number', validTypes: ['number'] }],
-          [{ number: 'string' }]
+          { number: 'string' },
+          0
         )).to.throw('1st objects parameter "number" is a string, can only be: number.');
+      });
+    });
+  });
+
+  describe('validateParamArray', () => {
+    const paramName = 'objects';
+    const validParams = [];
+
+    describe('structure', () => {
+      it('is invalid if not an array', () => {
+        expect(() => validateParamArray(paramName, validParams, 'isNotArray'))
+          .to.throw('objects must be an array.');
+      });
+    });
+
+    describe('numbering', () => {
+      it('mentions the array position if an array object is invalid', () => {
+        expect(() => validateParamArray(paramName, validParams, [false, {}])).to.throw('1st');
+        expect(() => validateParamArray(paramName, validParams, [{}, false])).to.throw('2nd');
       });
     });
   });
