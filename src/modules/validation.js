@@ -58,3 +58,55 @@ export function validateFiles(files) {
     errorHandler('validating the "files" parameter', err);
   }
 }
+
+export function validateQuestions(questions) {
+  const validQuestionParams = [
+    {
+      name: 'choices',
+      required: false,
+      validTypes: ['array', 'function'],
+    },
+    {
+      name: 'default',
+      required: false,
+      validTypes: ['array', 'function', 'number', 'string'],
+    },
+    {
+      name: 'filter',
+      required: false,
+      validTypes: ['function'],
+    },
+    {
+      name: 'message',
+      required: true,
+      validTypes: ['function', 'string'],
+    },
+    {
+      name: 'name',
+      required: true,
+      validTypes: ['string'],
+    },
+    {
+      name: 'type',
+      required: false,
+      validTypes: ['string'],
+    },
+    {
+      name: 'validate',
+      required: false,
+      validTypes: ['function'],
+    },
+
+    {
+      name: 'when',
+      required: false,
+      validTypes: ['boolean', 'function'],
+    },
+  ];
+
+  try {
+    validateParamArray('questions', questions, validQuestionParams);
+  } catch (err) {
+    errorHandler('validating the "questions" parameter', err);
+  }
+}
