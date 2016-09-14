@@ -1,16 +1,18 @@
 import errorHandler from '../errorHandler';
-import path from 'path';
+import { makeDirectories } from './directories';
 import { validateFiles } from '../validation';
-import { writeFile } from './fileSystem';
 
-export default async function writeFiles(files) {
+export default async function outputFiles(files, answers, options) {
   try {
     validateFiles(files);
 
     for (const file of files) {
-      await writeFile(path.resolve(file.path), file.content);
-    }
+      await makeDirectories(options.project, file.path);
 
+      // Resolve questions transformation
+      // Handlebars OR JSON
+      // Write file
+    }
   } catch (err) {
     errorHandler('writing files', err);
   }

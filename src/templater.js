@@ -1,10 +1,10 @@
 import askQuestions from './modules/input/askQuestions';
 import outputFiles from './modules/output/outputFiles';
-import { validateOptions } from './modules/valiation';
+import { validateOptions } from './modules/validation';
 
 export default async function (questions, files, options) {
   validateOptions(options);
 
   const answers = await askQuestions(questions);
-  return await outputFiles(files, answers);
+  return await outputFiles(files, answers, options);
 }
