@@ -7,9 +7,11 @@ export default async function outputFiles(files, answers, options) {
     validateFiles(files);
 
     for (const file of files) {
+      const data = file.filter ? file.filter(answers) : answers;
+      console.log(data);
+
       await makeDirectories(options.project, file.path);
 
-      // Resolve questions transformation
       // Handlebars OR JSON
       // Write file
     }
