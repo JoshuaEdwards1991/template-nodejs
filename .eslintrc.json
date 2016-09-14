@@ -38,7 +38,7 @@
     "global-require": "error",
     "handle-callback-err": ["error", "err"],
     "id-length": ["warn", { "min": 2, "properties": "always" }],
-    "indent": ["warn", 2],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
     "key-spacing": ["warn", { "beforeColon": false, "afterColon": true, "mode": "minimum" }],
     "keyword-spacing": ["warn", { "before": true, "after": true }],
     "linebreak-style": ["warn", "unix"],
