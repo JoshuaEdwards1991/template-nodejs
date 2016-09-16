@@ -7,19 +7,25 @@ export function validateObjectParams(paramName, validParams, object, index) {
   if (typeof object !== 'object') throw new Error(`${position}${paramName} is not an object.`);
 
   for (const validParam of validParams) {
-    const { name, required, validTypes } = validParam;
+    const { name, required, validTypes, validValues } = validParam;
     const value = object[name];
 
     let type = typeof value;
     if (type === 'object' && Array.isArray(value)) type = 'array';
 
-    if (required && value === undefined) {
+    if (value === undefined && required) {
       throw new Error(`${position}${paramName} is missing the required "${name}" parameter.`);
 
     } else if (value !== undefined && !validTypes.includes(type)) {
       const typesList = validTypes.join(', ');
       throw new Error(
         `${position}${paramName} parameter "${name}" is a ${type}, can only be: ${typesList}.`
+      );
+
+    } else if (value !== undefined && validValues && !validValues.includes(value)) {
+      const valuesList = validValues.join(', ');
+      throw new Error(
+        `${position}${paramName} parameter "${name}" can only be: ${valuesList}.`
       );
     }
   }
@@ -64,6 +70,9 @@ export function validateQuestions(questions) {
       name: 'type',
       required: false,
       validTypes: ['string'],
+      validValues: [
+        'checkbox', 'confirm', 'editor', 'expand', 'input', 'list', 'rawlist', 'password',
+      ],
     },
     {
       name: 'validate',

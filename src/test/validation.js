@@ -88,7 +88,36 @@ describe('validation', () => {
           [{ name: 'number', validTypes: ['number'] }],
           { number: 'string' },
           0
-        )).to.throw('1st objects parameter "number" is a string, can only be: number.');
+        )).to.throw('objects parameter "number" is a string, can only be: number.');
+      });
+    });
+
+    describe('value', () => {
+      it('is valid if matching the single validValue', () => {
+        expect(validateObjectParams(
+          paramName,
+          [{ name: 'string', validTypes: ['string'], validValues: ['example'] }],
+          { string: 'example' },
+          0
+        )).to.be.undefined;
+      });
+
+      it('is valid if matching one of multiple validValues', () => {
+        expect(validateObjectParams(
+          paramName,
+          [{ name: 'string', validTypes: ['string'], validValues: ['foo', 'bar'] }],
+          { string: 'bar' },
+          0
+        )).to.be.undefined;
+      });
+
+      it('is invalid if not included in validValues', () => {
+        expect(() => validateObjectParams(
+          paramName,
+          [{ name: 'string', validTypes: ['string'], validValues: ['foo', 'bar'] }],
+          { string: 'notAValidValue' },
+          0
+        )).throw('objects parameter "string" can only be: foo, bar.');
       });
     });
   });
