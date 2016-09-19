@@ -1,3 +1,4 @@
+import { createFile, writeFile } from './file';
 import errorHandler from '../errorHandler';
 import { makeDirectories } from './directories';
 import { validateFiles } from '../validation';
@@ -8,13 +9,12 @@ export default async function outputFiles(files, answers, options) {
 
     for (const file of files) {
       const data = file.filter ? file.filter(answers) : answers;
-      console.log(data);
+      const content = createFile(data, file.template);
 
       await makeDirectories(options.project, file.path);
-
-      // Handlebars OR JSON
-      // Write file
+      await writeFile(file.path, content, options.project);
     }
+
   } catch (err) {
     errorHandler('writing files', err);
   }
