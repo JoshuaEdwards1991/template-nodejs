@@ -4,25 +4,10 @@ import { getDirectoriesToMake } from '../modules/output/directories';
 describe('directories', () => {
   describe('getDirectoriesToMake', () => {
     const project = 'project';
-    const exampleDirectories = getDirectoriesToMake(project, './one/two/three/four.txt');
+    let exampleDirectories;
 
-    describe('validation', () => {
-      it('errors on paths above the current directory', () => {
-        const invalidPaths = ['..', '../example', './example/../..', 'example/../../foo'];
-
-        for (const invalidPath of invalidPaths) {
-          expect(() => getDirectoriesToMake(project, invalidPath)).to.throw(
-            'file relative "path" parameter must be on or below the current directory.'
-          );
-        }
-      });
-
-      it('disregards leading current directory "."', () => {
-        const withCurrent = getDirectoriesToMake(project, './one/two.txt');
-        const withoutCurrent = getDirectoriesToMake(project, 'one/two.txt');
-
-        expect(withCurrent).to.deep.equal(withoutCurrent);
-      });
+    before(() => {
+      exampleDirectories = getDirectoriesToMake(project, './one/two/three/four.txt');
     });
 
     describe('output', () => {
