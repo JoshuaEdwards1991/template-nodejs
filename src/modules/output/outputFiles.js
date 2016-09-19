@@ -3,18 +3,18 @@ import errorHandler from '../errorHandler';
 import { makeDirectories } from './directories';
 import { validateFiles } from '../validation';
 
+const skipFile = function skipFile(when, answers) {
+  if (when === undefined) return false;
+  else if (typeof when === 'function') return !when(answers);
+  return !when;
+};
+
 export default async function outputFiles(files, answers, options) {
   try {
     validateFiles(files);
 
     for (const file of files) {
-      if (file.when !== undefined) {
-        const when = typeof file.when === 'function' ? file.when(answers) : file.when;
-        if (!when) continue;
-      }
-
-      console.log(`Processing ${file.path}`);
-      console.dir(file.when);
+      if (skipFile(file.when, answers)) continue;
 
       const data = file.filter ? file.filter(answers) : answers;
       const content = createFile(data, file.template);
